@@ -1,0 +1,64 @@
+{% extends "list/base.html" %}
+{% block body %}
+    <div class="row mt-5 mb-3">
+        <div class="col">
+            <h3 class="mb-0" style="color: #999999;">Cafeterías, Restaurantes y Mercados Kosher</h3>
+        </div>
+    </div>
+
+    <div class="row justify-content-between" mt-4">
+    <div class="col mt-4">
+        <h4>{{ shops|length }} lugares en CABA </h4>
+    </div>
+    </div>
+    <div class="row mt-3">
+
+        {% if shops %}
+
+            {% for shop in shops %}
+                <div class="col-lg-4 col-md-6 col-mobile">
+                    <div class="card mb-4 shadow-sm">
+
+
+                        <a href="{% url 'detail' shop.short_name %}"><img class="card-img-top" src="media/{{ shop.image }}"/></a>
+
+
+                        <div class="card-body">
+                            <h5 class="card-title text-center">{{ shop.name }}</h5>
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item">
+                                    <i class="fas fa-map-pin"></i>
+                                    {{ shop.address }}
+                                    <span class="hide-mobile">
+            ({{ shop.place.name }})
+          </span>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <i class="fa fa-instagram"></i>
+                                    <a href="https://www.instagram.com/{{ shop.instagram }}">{{ shop.instagram }}</a>
+                                </li>
+                                {% if shop.phone %}
+                                    <li class="list-group-item">
+                                        <i class="fa fa-phone"></i>
+                                        {{ shop.phone }}
+                                    </li>
+                                {% endif %}
+                                {% if shop.whatsapp %}
+                                    <li class="list-group-item">
+                                        <i class="fa fa-whatsapp"></i>
+                                        <a href="https://api.whatsapp.com/send?phone={{ shop.whatstapp }}&amp;text=Hola%21%20Quisiera%20hacer%20un%20pedido.%0A%0Avia%20ComoKosher."> {{ shop.whatsapp }}</a>
+                                    </li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No shops are available.</p>
+        {% endif %}
+{% endblock %}

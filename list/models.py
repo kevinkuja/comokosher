@@ -34,10 +34,12 @@ class Category(models.Model):
 
 class Shop(models.Model):
     name = models.CharField(max_length=100)
-    address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=20)
-    instagram = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='photo',blank=True,null=True,verbose_name='Photo')
+    short_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200,blank=True,null=True,)
+    phone = models.CharField(max_length=20,blank=True,null=True,)
+    whatsapp = models.CharField(max_length=20,blank=True,null=True,)
+    instagram = models.CharField(max_length=50,blank=True,null=True,)
+    image = models.ImageField(upload_to='media',blank=True,null=True,verbose_name='Photo')
     category = models.ForeignKey(Category, models.PROTECT)
     place = models.ForeignKey(Place, models.PROTECT)
     created_at = models.DateTimeField(auto_now_add=True, blank=True)

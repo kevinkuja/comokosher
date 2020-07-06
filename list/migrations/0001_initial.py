@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
                 ('address', models.CharField(max_length=200)),
                 ('phone', models.CharField(max_length=20)),
                 ('instagram', models.CharField(max_length=50)),
-                ('image', models.ImageField(blank=True, null=True, upload_to='photo', verbose_name='Photo')),
+                ('image', models.ImageField(blank=True, null=True, upload_to='media', verbose_name='Photo')),
                 ('created_at', models.DateTimeField(verbose_name='')),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='list.Category')),
                 ('place', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='list.Place')),
